@@ -98,9 +98,9 @@
 
 
 // First set of digital pins (31--37)
-#define UPPER_ROAD_DATA_PIN         31
-#define UPPER_ROAD_NUM_LEDS         6
-#define UPPER_ROAD_BRIGHTNESS       200
+#define XUPPER_ROAD_DATA_PIN         31
+#define XUPPER_ROAD_NUM_LEDS         6
+#define XUPPER_ROAD_BRIGHTNESS       200
 
 #define LOWER_ROAD_DATA_PIN         32
 #define LOWER_ROAD_NUM_LEDS         6
@@ -111,7 +111,7 @@
 #define PLANETARIUM_BRIGHTNESS       200
 
 #define BACK_STRAIGHT_DATA_PIN      34
-#define UPPER_ROAD_LEDS      6
+#define BACK_STRAIGHT_NUM_LEDS      6
 #define BACK_STRAIGHT_BRIGHTNESS    200
 
 #define THE_HILLS_DATA_PIN          35
@@ -127,9 +127,9 @@
 #define BRIDGE_BRIGHTNESS           200
 
 // First set of digital pins (47--53)
-#define UPPER_ROAD_DATA_PIN2         47
-#define UPPER_ROAD_NUM_LEDS2         25
-#define UPPER_ROAD_BRIGHTNESS2       200
+#define POST_HAIRPIN_ROAD__PIN       47
+#define POST_HAIRPIN_ROAD__NUM_LEDS         34
+#define POST_HAIRPIN_ROAD__BRIGHTNESS       200
 
 #define LOWER_ROAD_DATA_PIN2         48
 #define LOWER_ROAD_NUM_LEDS2         6
@@ -197,8 +197,7 @@ t_light_block light_block__road_to_hogwarts = {
 //*****************************************************************************
 // DATA
 //*****************************************************************************
-CRGB upper_road_leds[UPPER_ROAD_NUM_LEDS];
-CRGB lower_road_leds[LOWER_ROAD_NUM_LEDS];
+CRGB post_hairpin_road__leds[POST_HAIRPIN_ROAD__NUM_LEDS];
 
 //*****************************************************************************
 // FUNCTIONS
@@ -224,28 +223,24 @@ void setup() {
 
     // Uncomment/edit one of the following lines for your leds arrangement.
     // ## Clockless types ##
-    FastLED.addLeds<NEOPIXEL, UPPER_ROAD_DATA_PIN>(upper_road_leds, UPPER_ROAD_NUM_LEDS);  // GRB ordering is assumed);  // GRB ordering is assumed
-    FastLED.addLeds<NEOPIXEL, LOWER_ROAD_DATA_PIN>(lower_road_leds, LOWER_ROAD_NUM_LEDS);  // GRB ordering is assumed);  // GRB ordering is assumed
+    FastLED.addLeds<NEOPIXEL, POST_HAIRPIN_ROAD__PIN>(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS);  // GRB ordering is assumed);  // GRB ordering is assumed
 
-    // Clear out the LED array to a dim background blue-green
-    fill_solid( upper_road_leds,    UPPER_ROAD_LEDS,    CRGB( 12, 7, 3));
-    fill_solid( lower_road_leds,      LOWER_ROAD_NUM_LEDS,      CRGB( 3,  7, 12));
+  // Flash 3 times
+  // Indicating that this is /dev/ttyACM3
+  fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
+  for(int i = 0; i < 3; i++)
+  {
+    // Color: White
+    fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::White);
     FastLED.show();
-    Serial.println("Set all LEDs to a dim background blue-green, pause 3 seconds");
-    delay(3000);
+    delay(500);
 
-    // Setup the following to be white:
-    //  * road_to_hogwarts_leds
-    //  * lower_road_leds
-    //  * upper_road_leds
-
-    fill_solid( upper_road_leds,    UPPER_ROAD_LEDS,    CRGB::White);
-    fill_solid( lower_road_leds,      LOWER_ROAD_NUM_LEDS,      CRGB::White);
+    // Color: Black
+    fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
     FastLED.show();
-    Serial.println("Finish Line, backstraight away, and road to Hogwarts: set to white, pause 3 seconds");
-    delay(3000);
+    delay(500);
 
-    Serial.println("Loop...");
+  }
 }
 
 
@@ -254,8 +249,28 @@ void setup() {
  */
 void loop() {
     // Refresh colors
-    fill_solid( upper_road_leds,      UPPER_ROAD_LEDS,      CRGB::White);
-    fill_solid( lower_road_leds,      LOWER_ROAD_NUM_LEDS,      CRGB::White);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Red);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Orange);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Yellow);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Green);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Blue);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Indigo);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Violet);
+    FastLED.show();
+    delay(500);
+    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::White);
     FastLED.show();
     delay(500);
 }
