@@ -204,6 +204,24 @@ CRGB post_hairpin_road__leds[POST_HAIRPIN_ROAD__NUM_LEDS];
 //*****************************************************************************
 
 /*------------------------------------------------
+ * Function: fill_single_color
+ *
+ * Params:c
+ *    led_list (CRGB*): pointer to a list of LEDs
+ *    count    (int):   The number of LEDs in the list
+ *    color    (CRGB):  The color
+ */
+void fill_single_color(CRGB *led_list, int count, CRGB color)
+{
+    for(int i = 0; i < count; i++)
+    {
+        led_list[i] = color;
+    }
+    FastLED.show();
+}
+
+
+/*------------------------------------------------
  * Function: setup
  */
 void setup() {
@@ -227,20 +245,36 @@ void setup() {
 
   // Flash 3 times
   // Indicating that this is /dev/ttyACM3
-  fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
+  fill_single_color(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
   for(int i = 0; i < 3; i++)
   {
     // Color: White
-    fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::White);
-    FastLED.show();
+    fill_single_color(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::White);
     delay(500);
 
     // Color: Black
-    fill_solid(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
-    FastLED.show();
+    fill_single_color(post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS, CRGB::Black);
     delay(500);
 
   }
+
+    // Refresh colors
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Red);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Orange);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Yellow);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Green);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Blue);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Indigo);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Violet);
+    delay(2000);
+    fill_single_color( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::White);
+    delay(2000);
 }
 
 
@@ -249,28 +283,7 @@ void setup() {
  */
 void loop() {
     // Refresh colors
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Red);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Orange);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Yellow);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Green);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Blue);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Indigo);
-    FastLED.show();
-    delay(500);
-    fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::Violet);
-    FastLED.show();
-    delay(500);
     fill_solid( post_hairpin_road__leds, POST_HAIRPIN_ROAD__NUM_LEDS,      CRGB::White);
     FastLED.show();
-    delay(500);
+    delay(5000);
 }
